@@ -42,7 +42,7 @@ const Cart = () => {
     <div className='cart-container'>
       <h1 className='cart-header'>Shopping Cart</h1>
       {cartItems.length === 0 ? (
-        <div className='cart-empty'>Your Mill Cart is empty.</div>
+        <div className='cart-empty'>Your MIll Cart is empty.</div>
       ) : (
         <div className='cart-items-container'>
           {cartItems.map((item) => (
@@ -51,6 +51,9 @@ const Cart = () => {
                 product={item}
                 onAddToCart={handleAddProduct}
                 onRemoveFromCart={handleRemoveProduct}
+                image={item.image}
+                price={item.price}
+                description={item.description}
               />
               <div className='cart-item-quantity'>
                 Qty: <input type="number" min="1" value={item.quantity} readOnly />
