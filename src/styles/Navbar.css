@@ -1,0 +1,54 @@
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 10px 20px;
+  color: white;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5em;
+  display: flex;
+  margin-right: 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-icon {
+  margin-right: 10px; 
+}
+
+.navbar-links a {
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-right input {
+  margin-right: 10px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.navbar-right a {
+  margin-left: 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.person {
+  margin-right: 10px;
+}
