@@ -1,0 +1,9 @@
+
+.App {
+  font-family: Arial, sans-serif;
+}
+
+.content {
+  display: flex;
+  padding: 20px;
+}
