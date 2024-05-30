@@ -7,6 +7,7 @@ const Cart = () => {
   const handleCartClearance = () => {
     setCartItems([]);
   }
+
   const handleAddProduct = (product) => {
     const productExists = cartItems.find((item) => item.id === product.id);
 
@@ -21,6 +22,27 @@ const Cart = () => {
   }
 
   const handleRemoveProduct = (product) => {
+    const productExists = cartItems.find((item) => item.id === product.id);
+    if (productExists) {
+      if (productExists.quantity === 1) {
+        setCartItems(cartItems.filter((item) => item.id !== product.id));
+      } else {
+        setCartItems(cartItems.map((item) =>
+          item.id === product.id ? 
+          { ...item, quantity: item.quantity - 1 } : item
+        ));
+      }
+    }
+  }
+
+  const handleIncreaseQuantity = (product) => {
+    setCartItems(cartItems.map((item) =>
+      item.id === product.id ?
+        { ...item, quantity: item.quantity + 1 } : item
+    ));
+  }
+
+  const handleDecreaseQuantity = (product) => {
     const productExists = cartItems.find((item) => item.id === product.id);
     if (productExists) {
       if (productExists.quantity === 1) {
@@ -55,6 +77,10 @@ const Cart = () => {
               onAddToCart={handleAddProduct}
               onRemoveFromCart={handleRemoveProduct}
             />
+            <div className='cart-items-function'>
+              <button className='increase-button' onClick={() => handleIncreaseQuantity(item)}> + </button>
+              <button className='decrease-button' onClick={() => handleDecreaseQuantity(item)}> - </button>
+            </div>
           </div>
         ))}
       </div>
