@@ -1,12 +1,12 @@
 # Mill
-Anthony - Scrum master
-Boina
-James
+1. Anthony - Scrum master
+2. Boina
+3. James
 
 ## Roles
-Boina - Navigationbar
-Anto - Cart
-James- Homepage
+1. Boina - Navigationbar
+2. Anto - Cart
+3. James- Homepage
 
 ## Dependancies
 
