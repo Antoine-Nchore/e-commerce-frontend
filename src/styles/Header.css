@@ -1,0 +1,41 @@
+
+.header {
+  background-color: #FAE6E1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+  color: #305224;
+  margin-left: 20px;
+  margin-left: 20px;
+}
+
+.header-content {
+  text-align: left;
+}
+
+.header h2 {
+  margin: 0 0 10px 0;
+  font-size: 1.5em; 
+  font-weight: bold;
+  line-height: 1.2; 
+}
+
+
+.header button {
+  padding: 10px 20px;
+  background-color: #305224;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.header-image {
+  width: 300px;
+  height: auto;
+  border-radius: 8px;
+  margin-right: 300px;
+}
