@@ -1,16 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { BsFillBasketFill } from "react-icons/bs";
-import "../styles/Navbar.css";
 import { BsPerson } from "react-icons/bs";
+import "../styles/Navbar.css";
 
 const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-left">
         <div className="logo">
-          <BsFillBasketFill className="logo-icon" />
-          Mill
+          <Link to="/">
+            <BsFillBasketFill className="logo-icon" />
+            Mill
+          </Link>
         </div>
         <div className="navbar-links">
           <a href="#categories">Categories</a>
@@ -21,14 +24,14 @@ const Navbar = () => {
       </div>
       <div className="navbar-right">
         <input type="text" placeholder="Search Product" />
-        <a href="#account">
+        <Link to="#account">
           <BsPerson className="person" />
           Account
-        </a>
-        <a href="#cart">
+        </Link>
+        <Link to="/cart">
           <FaShoppingCart className="person" />
-          cart
-        </a>
+          Cart
+        </Link>
       </div>
     </nav>
   );
