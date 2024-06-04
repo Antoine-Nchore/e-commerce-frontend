@@ -4,6 +4,7 @@ import Cart from "./pages/Cart";
 import Home from "./pages/Home";
 import "./styles/App.css";
 import Navbar from "./components/Navbar";
+import LoginForm from "./pages/Login";
 
 const products = [
   {
@@ -120,6 +121,10 @@ function App() {
     <div className="App">
       <Navbar />
       <Routes>
+        <Route path="/login" element={
+          <LoginForm/>
+        }/>
+      
         <Route
           path="/"
           element={<Home onAddToCart={handleAddProduct} product={products} />}

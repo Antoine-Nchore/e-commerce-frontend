@@ -24,7 +24,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-right">
         <input type="text" placeholder="Search Product" />
-        <Link to="#account">
+        <Link to="/login">
           <BsPerson className="person" />
           Account
         </Link>
