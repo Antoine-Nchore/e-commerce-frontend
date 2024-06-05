@@ -1,11 +1,13 @@
+/* Navbar.css */
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
   padding: 10px 20px;
   color: white;
+  background-color: black;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .navbar-left {
@@ -14,41 +16,60 @@
 }
 
 .logo {
-  font-size: 1.5em;
   display: flex;
-  margin-right: 22px;
   align-items: center;
-  justify-content: space-between;
+  font-size: 24px;
+  font-weight: bold;
+  color:white;
 }
 
 .logo-icon {
-  margin-right: 10px; 
+  margin-right: 8px;
+  font-size: 24px;
 }
 
 .navbar-links a {
   margin: 0 10px;
-  color: white;
   text-decoration: none;
+  color: white;
 }
 
 .navbar-right {
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 .navbar-right input {
-  margin-right: 10px;
-  padding: 5px;
-  border-radius: 10px;
+  margin-right: 20px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #000;
 }
 
-.navbar-right a {
-  margin-left: 10px;
-  color: white;
+.account-links {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.person-icon {
+  font-size: 24px;
+  margin-right: 8px;
+}
+
+.account-links a {
   text-decoration: none;
+  color: white;
+  margin: 0 5px;
 }
 
-.person {
-  margin-right: 10px;
+.divider {
+  margin: 0 5px;
+  color: #ccc;
+}
+
+.cart-icon {
+  font-size: 24px;
+  margin-right: 8px;
 }
