@@ -24,12 +24,14 @@ const Navbar = () => {
       </div>
       <div className="navbar-right">
         <input type="text" placeholder="Search Product" />
-        <Link to="/login">
-          <BsPerson className="person" />
-          Account
-        </Link>
+        <div className="account-links">
+          <BsPerson className="person-icon" />
+          <Link to="/login">Login</Link>
+          <span className="divider">|</span>
+          <Link to="/registration">Registration</Link>
+        </div>
         <Link to="/cart">
-          <FaShoppingCart className="person" />
+          <FaShoppingCart className="cart-icon" />
           Cart
         </Link>
       </div>
