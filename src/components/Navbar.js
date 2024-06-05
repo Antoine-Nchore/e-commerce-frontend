@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaShoppingCart } from "react-icons/fa";
-import { BsFillBasketFill } from "react-icons/bs";
-import { BsPerson } from "react-icons/bs";
+import { FaShoppingCart, FaSearch } from "react-icons/fa";
+import { BsFillBasketFill, BsPerson } from "react-icons/bs";
 import "../styles/Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ onSearch }) => {
+  const [searchInput, setSearchInput] = useState("");
+
+  const handleInputChange = (e) => {
+    setSearchInput(e.target.value);
+  };
+
+  const handleSearchClick = () => {
+    onSearch(searchInput);
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-left">
@@ -23,16 +32,28 @@ const Navbar = () => {
         </div>
       </div>
       <div className="navbar-right">
-        <input type="text" placeholder="Search Product" />
+        <div className="search-container">
+          <FaSearch className="search-icon" />
+          <input
+            type="text"
+            placeholder="I'm looking for..."
+            value={searchInput}
+            onChange={handleInputChange}
+            className="search-input"
+          />
+          <button className="search-button" onClick={handleSearchClick}>
+            Search
+          </button>
+        </div>
         <div className="account-links">
           <BsPerson className="person-icon" />
           <Link to="/login">Login</Link>
           <span className="divider">|</span>
           <Link to="/registration">Registration</Link>
         </div>
-        <Link to="/cart">
+        <Link to="/cart" className="cart-link">
           <FaShoppingCart className="cart-icon" />
-          Cart
+          <span>Cart</span>
         </Link>
       </div>
     </nav>
