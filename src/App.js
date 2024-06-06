@@ -1,10 +1,14 @@
 import React, { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Cart from "./pages/Cart";
 import Home from "./pages/Home";
 import "./styles/App.css";
 import Navbar from "./components/Navbar";
+import Signup from "./pages/Signup";
 import LoginForm from "./pages/Login";
+import ProductDetail from "./components/ProductDetail";
+import { Toaster } from "react-hot-toast"; 
+import Footer from "./components/Footer";
 
 const products = [
   {
@@ -80,6 +84,8 @@ const products = [
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
 
   const handleAddProduct = (product) => {
     const productExists = cartItems.find((item) => item.id === product.id);
@@ -117,17 +123,21 @@ function App() {
     setCartItems([]);
   };
 
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+    navigate("/");
+  };
+
   return (
     <div className="App">
-      <Navbar />
+      <Toaster /> 
+      <Navbar onSearch={handleSearch} />
       <Routes>
-        <Route path="/login" element={
-          <LoginForm/>
-        }/>
-      
+        <Route path="/registration" element={<Signup />} />
+        <Route path="/login" element={<LoginForm />} />
         <Route
           path="/"
-          element={<Home onAddToCart={handleAddProduct} product={products} />}
+          element={<Home product={products} searchTerm={searchTerm} />}
         />
         <Route
           path="/cart"
@@ -140,7 +150,14 @@ function App() {
             />
           }
         />
+        <Route
+          path="/product/:id"
+          element={
+            <ProductDetail products={products} onAddToCart={handleAddProduct} />
+          }
+        />
       </Routes>
+      <Footer />
     </div>
   );
 }

@@ -1,4 +1,15 @@
-/* Navbar.css */
+.avatar {
+  width: 40px; 
+  height: 40px; 
+  border-radius: 50%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px; 
+  font-weight: bold;
+  color: white;
+}
+
 
 .navbar {
   display: flex;
@@ -7,7 +18,7 @@
   padding: 10px 20px;
   color: white;
   background-color: black;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-left {
@@ -20,7 +31,7 @@
   align-items: center;
   font-size: 24px;
   font-weight: bold;
-  color:white;
+  color: white;
 }
 
 .logo-icon {
@@ -39,18 +50,49 @@
   align-items: center;
 }
 
-.navbar-right input {
-  margin-right: 20px;
-  padding: 5px 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  color: #000;
+.search-container {
+  display: flex;
+  align-items: center;
+  border: white;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  background-color: white;
+  margin-right: 20px; 
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  color: gray;
+}
+
+.search-input {
+  border: none;
+  padding: 10px 10px 10px 40px;
+  border-radius: 20px 0 0 20px;
+  outline: none;
+  width: 200px;
+  color: black;
+}
+
+.search-button {
+  background-color: #305224;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 0 20px 20px 0;
+  font-weight: bold;
+}
+
+.search-button:hover {
+  background-color: #48a14d;
 }
 
 .account-links {
   display: flex;
   align-items: center;
-  margin-right: 20px;
 }
 
 .person-icon {
@@ -69,7 +111,59 @@
   color: #ccc;
 }
 
+.cart-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  margin-left: 20px;
+}
+
 .cart-icon {
   font-size: 24px;
   margin-right: 8px;
+}
+
+.account-dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  cursor: pointer;
+  color: white;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.account-dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu a,
+.dropdown-menu button {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: black;
+  background: white;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu button:hover {
+  background: #f5f5f5;
 }

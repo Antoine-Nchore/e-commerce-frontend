@@ -37,3 +37,9 @@
     transform: rotate(360deg);
   }
 }
+
+.no-results-message {
+  text-align: center;
+  margin: 20px;
+  color: black;
+}
