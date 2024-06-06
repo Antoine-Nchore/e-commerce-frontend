@@ -6,6 +6,8 @@ import "./styles/App.css";
 import Navbar from "./components/Navbar";
 import Signup from "./pages/Signup";
 import LoginForm from "./pages/Login";
+import ProductDetail from "./components/ProductDetail";
+import { Toaster } from "react-hot-toast"; 
 
 const products = [
   {
@@ -127,19 +129,14 @@ function App() {
 
   return (
     <div className="App">
+      <Toaster /> 
       <Navbar onSearch={handleSearch} />
       <Routes>
         <Route path="/registration" element={<Signup />} />
         <Route path="/login" element={<LoginForm />} />
         <Route
           path="/"
-          element={
-            <Home
-              onAddToCart={handleAddProduct}
-              product={products}
-              searchTerm={searchTerm}
-            />
-          }
+          element={<Home product={products} searchTerm={searchTerm} />}
         />
         <Route
           path="/cart"
@@ -150,6 +147,12 @@ function App() {
               onRemoveFromCart={handleRemoveProduct}
               onClearCart={handleCartClearance}
             />
+          }
+        />
+        <Route
+          path="/product/:id"
+          element={
+            <ProductDetail products={products} onAddToCart={handleAddProduct} />
           }
         />
       </Routes>

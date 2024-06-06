@@ -1,11 +1,29 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaShoppingCart, FaSearch } from "react-icons/fa";
 import { BsFillBasketFill, BsPerson } from "react-icons/bs";
+import { AuthContext } from "../components/AuthContext";
 import "../styles/Navbar.css";
+import { useNavigate } from "react-router-dom";
+
+const Avatar = ({ firstName }) => {
+  const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+
+  const abbreviation = firstName.charAt(0).toUpperCase();
+
+  return (
+    <div className="avatar" style={{ backgroundColor: randomColor }}>
+      {abbreviation}
+    </div>
+  );
+};
 
 const Navbar = ({ onSearch }) => {
   const [searchInput, setSearchInput] = useState("");
+  const { isAuthenticated, user } = useContext(AuthContext);
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const { logout } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     setSearchInput(e.target.value);
@@ -13,6 +31,12 @@ const Navbar = ({ onSearch }) => {
 
   const handleSearchClick = () => {
     onSearch(searchInput);
+  };
+
+  const handleLogout = () => {
+    logout();
+    alert("Logged out");
+    navigate("/");
   };
 
   return (
@@ -45,12 +69,29 @@ const Navbar = ({ onSearch }) => {
             Search
           </button>
         </div>
-        <div className="account-links">
-          <BsPerson className="person-icon" />
-          <Link to="/login">Login</Link>
-          <span className="divider">|</span>
-          <Link to="/registration">Registration</Link>
-        </div>
+        {isAuthenticated && user ? (
+          <div className="account-dropdown">
+            <span
+              className="dropdown-toggle"
+              onClick={() => setDropdownVisible(!dropdownVisible)}
+            >
+              <Avatar firstName={user.first_name} /> Hi, {user.first_name}
+            </span>
+            {dropdownVisible && (
+              <div className="dropdown-menu">
+                <Link to="/account">My Account</Link>
+                <button onClick={handleLogout}>Logout</button>
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="account-links">
+            <BsPerson className="person-icon" />
+            <Link to="/login">Login</Link>
+            <span className="divider">|</span>
+            <Link to="/registration">Registration</Link>
+          </div>
+        )}
         <Link to="/cart" className="cart-link">
           <FaShoppingCart className="cart-icon" />
           <span>Cart</span>

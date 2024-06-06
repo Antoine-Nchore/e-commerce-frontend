@@ -38,7 +38,7 @@ function Home({ onAddToCart, product, searchTerm }) {
       <div className="content">
         <Sidebar onFilterCategory={filterProductsByCategory} />
         {filteredProducts.length > 0 ? (
-          <ProductList onAddToCart={onAddToCart} product={filteredProducts} />
+          <ProductList onAddToCart={onAddToCart} products={filteredProducts} />
         ) : (
           <div className="no-results-message">
             <h1>Found 0 ads in Mill</h1>
