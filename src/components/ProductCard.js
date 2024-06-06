@@ -1,9 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/ProductCard.css";
 
-const ProductCard = ({ product, onAddToCart }) => {
+const ProductCard = ({ product }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/product/${product.id}`);
+  };
+
   return (
-    <div className="product-card">
+    <div className="product-card" onClick={handleClick}>
       <div className="image-container">
         <img src={product.image} alt={product.name} />
       </div>
@@ -11,7 +18,6 @@ const ProductCard = ({ product, onAddToCart }) => {
         <h3>{product.name}</h3>
         <p>{product.price}</p>
         <p>{`Rating: ${product.rating}`}</p>
-        <button onClick={() => onAddToCart(product)}>Add to Cart</button>
       </div>
     </div>
   );
