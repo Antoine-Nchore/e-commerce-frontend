@@ -9,6 +9,7 @@ import LoginForm from "./pages/Login";
 import ProductDetail from "./components/ProductDetail";
 import { Toaster } from "react-hot-toast"; 
 import Footer from "./components/Footer";
+import Account from "./components/Account";
 
 const products = [
   {
@@ -86,7 +87,7 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
-
+  const session = JSON.parse(localStorage.getItem("session"));
   const handleAddProduct = (product) => {
     const productExists = cartItems.find((item) => item.id === product.id);
     if (productExists) {
@@ -135,6 +136,7 @@ function App() {
       <Routes>
         <Route path="/registration" element={<Signup />} />
         <Route path="/login" element={<LoginForm />} />
+        <Route path="/account" element={<Account session={session}/>} />
         <Route
           path="/"
           element={<Home product={products} searchTerm={searchTerm} />}

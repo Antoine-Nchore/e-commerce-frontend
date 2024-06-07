@@ -1,0 +1,83 @@
+.footer {
+    background-color: #000;
+    color: #fff;
+    padding: 20px 0;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .social-links,
+  .contact-info {
+    flex: 1;
+    text-align: left;
+  }
+  
+  .about-us {
+    flex: 1;
+    text-align: right;
+    cursor: pointer
+  }
+  .about-us:hover {
+    color: chartreuse;
+  }
+  
+  .social-links h4,
+  .contact-info h4,
+  .about-us h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .social-links ul,
+  .contact-info ul,
+  .about-us ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .social-links li,
+  .contact-info li,
+  .about-us li {
+    margin-bottom: 5px;
+  }
+  
+  .social-links a {
+    color: #fff;
+    font-size: 20px;
+    margin-right: 15px;
+  }
+  
+  .contact-info a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .about-us a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .copyright {
+    text-align: center;
+    font-size: 12px;
+    margin-top: 20px;
+  }
+  
+  .developers {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 10px;
+    color: aqua;
+    text-align: center;
+
+  }.developers:hover {
+    color:chartreuse;
+    cursor: pointer
+  }
+  
