@@ -5,26 +5,26 @@ import ProductList from "../components/ProductList";
 import Sidebar from "../components/Sidebar";
 import "../styles/App.css";
 
-function Home({ onAddToCart, product, searchTerm }) {
-  const [filteredProducts, setFilteredProducts] = useState(product);
+function Home({ onAddToCart, products, searchTerm }) {
+  const [filteredProducts, setFilteredProducts] = useState(products);
 
   useEffect(() => {
-    let updatedProducts = product;
+    let updatedProducts = products;
 
     if (searchTerm) {
-      updatedProducts = product.filter((prod) =>
-        prod.name.toLowerCase().includes(searchTerm.toLowerCase())
+      updatedProducts = products.filter((prod) =>
+        prod.product_name.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
     setFilteredProducts(updatedProducts);
-  }, [product, searchTerm]);
+  }, [products, searchTerm]);
 
   const filterProductsByCategory = (selectedCategory) => {
     if (selectedCategory === "all") {
-      setFilteredProducts(product);
+      setFilteredProducts(products);
     } else {
-      const filtered = product.filter(
+      const filtered = products.filter(
         (prod) => prod.category === selectedCategory
       );
       setFilteredProducts(filtered);

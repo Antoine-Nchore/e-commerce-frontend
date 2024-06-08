@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../styles/Cart.css";
 
-const Cart = ({ cartItems, onAddToCart, onRemoveFromCart, onClearCart }) => {
-  const totalPrice = cartItems.reduce(
-    (price, item) =>
-      price + item.quantity * parseFloat(item.price.replace("ksh.", "")),
-    0
-  );
+const Cart = ({
+  cartItems,
+  onAddToCart,
+  onRemoveFromCart,
+  onClearCart,
+  fetchOrdersForUser,
+}) => {
+  useEffect(() => {
+    const session = JSON.parse(localStorage.getItem("session"));
+    if (session && session.user && session.user.id) {
+      fetchOrdersForUser(session.user.id);
+    }
+  }, [fetchOrdersForUser]);
+
+  const totalPrice = cartItems.reduce((price, item) => {
+    const itemPrice = item.price
+      ? parseFloat(item.price.replace("ksh.", ""))
+      : 0;
+    return price + item.quantity * itemPrice;
+  }, 0);
 
   return (
     <div className="cart-container">
@@ -26,7 +40,12 @@ const Cart = ({ cartItems, onAddToCart, onRemoveFromCart, onClearCart }) => {
                 </div>
               </div>
               <div className="cart-item-actions">
-                <button onClick={() => onAddToCart(item)}>+</button>
+                <button
+                  onClick={() => onAddToCart(item)}
+                  disabled={item.quantity >= item.availableQuantity}
+                >
+                  +
+                </button>
                 <button onClick={() => onRemoveFromCart(item)}>-</button>
               </div>
             </div>
@@ -37,7 +56,7 @@ const Cart = ({ cartItems, onAddToCart, onRemoveFromCart, onClearCart }) => {
         <span>
           Subtotal ({cartItems.length} item{cartItems.length !== 1 ? "s" : ""}):{" "}
         </span>
-        <span className="cart-total-price">ksh{totalPrice.toFixed(2)}</span>
+        <span className="cart-total-price">ksh {totalPrice.toFixed(2)}</span>
       </div>
       <div className="cart-actions">
         <button className="cart-clear" onClick={onClearCart}>

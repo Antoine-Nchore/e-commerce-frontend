@@ -12,11 +12,11 @@ const ProductCard = ({ product }) => {
   return (
     <div className="product-card" onClick={handleClick}>
       <div className="image-container">
-        <img src={product.image} alt={product.name} />
+        <img src={product.image_url} alt={product.product_name} />
       </div>
       <div className="details-container">
-        <h3>{product.name}</h3>
-        <p>{product.price}</p>
+        <h3>{product.product_name}</h3>
+        <p>{`Ksh: ${product.price}`}</p>
         <p>{`Rating: ${product.rating}`}</p>
       </div>
     </div>
