@@ -11,6 +11,7 @@ import { Toaster } from "react-hot-toast";
 import { api } from "./utils/Main";
 import Footer from "./components/Footer";
 import Account from "./components/Account";
+import Modal from "./components/Modal";
 import AboutUs from "./pages/AboutUs";
 
 function App() {
@@ -168,6 +169,7 @@ function App() {
           }
         />
       </Routes>
+      <Modal onAddToCart={handleAddProduct}/>
       <Footer />
     </div>
   );

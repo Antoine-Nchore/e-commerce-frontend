@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { api } from "../utils/Main";
+import '../styles/Account.css'
 
 const Account = ({ session }) => {
   const [userDetails, setUserDetails] = useState(null);
@@ -44,12 +45,14 @@ const Account = ({ session }) => {
   }
 
   return (
-    <div>
-      <h2>My Account</h2>
+    <div className='account'>
+      <div className='my-account'>
+      <h1>My Account</h1> 
+      </div>
       <p>Name: {userDetails.first_name} {userDetails.last_name}</p>
       <p>Role: {userDetails.role}</p>
       <p>Phone-Number: {userDetails.phone_number}</p>
-      <p>Email: {userDetails.email}</p>
+      <p className = 'email'>Email: {userDetails.email}</p>
     </div>
   );
 };
