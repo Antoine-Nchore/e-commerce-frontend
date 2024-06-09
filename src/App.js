@@ -132,6 +132,7 @@ function App() {
       <Routes>
         <Route path="/registration" element={<Signup />} />
         <Route path="/login" element={<LoginForm />} />
+        <Route path="/account" element={<Account session={session}/>} />
         <Route
           path="/"
           element={
@@ -161,6 +162,7 @@ function App() {
           }
         />
       </Routes>
+      <Footer />
     </div>
   );
 }
