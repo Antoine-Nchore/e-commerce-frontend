@@ -1,0 +1,39 @@
+.body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.cover-image {
+  width: 100%; 
+  height: 500px; 
+  border-radius: 8px;
+  margin-right: -100px; 
+}
+
+.cover-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.column-boxes {
+  display: flex;
+  justify-content: space-around;
+}
+
+.column-box {
+  flex: 1;
+  margin: 0 10px;
+  padding: 20px;
+  border: px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.column-box .content {
+  margin-top: 10px;
+}
+
+.column-box p {
+  line-height: 1.6;
+}
