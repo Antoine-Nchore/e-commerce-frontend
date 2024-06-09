@@ -9,6 +9,8 @@ import LoginForm from "./pages/Login";
 import ProductDetail from "./components/ProductDetail";
 import { Toaster } from "react-hot-toast";
 import { api } from "./utils/Main";
+import Footer from "./components/Footer";
+import Account from "./components/Account";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -50,6 +52,8 @@ function App() {
       console.error("Error fetching user orders:", error);
     }
   };
+
+  const session = JSON.parse(localStorage.getItem("session"));
 
   const handleAddProduct = async (product) => {
     try {
