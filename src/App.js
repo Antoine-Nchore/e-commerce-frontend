@@ -11,6 +11,7 @@ import { Toaster } from "react-hot-toast";
 import { api } from "./utils/Main";
 import Footer from "./components/Footer";
 import Account from "./components/Account";
+import Modal from "./components/Modal";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -166,6 +167,7 @@ function App() {
           }
         />
       </Routes>
+      <Modal onAddToCart={handleAddProduct}/>
       <Footer />
     </div>
   );
