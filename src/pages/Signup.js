@@ -1,24 +1,67 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../styles/Signup.css";
+import { api } from "../utils/Main";
+import { AuthContext } from "../components/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate = useNavigate();
+  const { setIsAuthenticated, setUser } = useContext(AuthContext);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("First Name:", firstName);
-    console.log("Last Name:", lastName);
-    console.log("Email:", email);
-    console.log("Phone Number:", phoneNumber);
-    console.log("Password:", password);
+    setIsLoading(true);
+
+    try {
+      const response = await api.post("/users", {
+        first_name: firstName,
+        last_name: lastName,
+        email,
+        phone_number: phoneNumber,
+        password,
+      });
+
+      if (response.status === 201) {
+        toast.success("Account created successfully");
+
+        // Automatically log in the user
+        const loginResponse = await api.post("/login", {
+          email,
+          password,
+        });
+
+        if (loginResponse.status === 200) {
+          const { data } = loginResponse;
+          localStorage.setItem("session", JSON.stringify(data));
+          setIsAuthenticated(true);
+
+          const userRes = await api.get(`/users/${data.user.id}`);
+          setUser(userRes.data.user);
+
+          navigate("/ ");
+        } else {
+          throw new Error("Login after signup failed");
+        }
+      }
+    } catch (error) {
+      console.error("Error during signup or login:", error);
+      toast.error("Failed to create account. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className="signup-container">
+      <ToastContainer />
       <div className="signup-box">
         <h2>Create your account</h2>
         <form onSubmit={handleSubmit}>
@@ -83,8 +126,8 @@ const Signup = () => {
             />
           </div>
           <div className="actions">
-            <button type="submit" className="signup-btn">
-              Sign Up
+            <button type="submit" className="signup-btn" disabled={isLoading}>
+              {isLoading ? "Signing up..." : "Sign Up"}
             </button>
           </div>
         </form>

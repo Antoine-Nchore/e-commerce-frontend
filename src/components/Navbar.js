@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 
 const Avatar = ({ firstName }) => {
   const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
-
   const abbreviation = firstName.charAt(0).toUpperCase();
 
   return (
@@ -18,7 +17,7 @@ const Avatar = ({ firstName }) => {
   );
 };
 
-const Navbar = ({ onSearch }) => {
+const Navbar = ({ onSearch, cartCount }) => {
   const [searchInput, setSearchInput] = useState("");
   const { isAuthenticated, user } = useContext(AuthContext);
   const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -95,6 +94,7 @@ const Navbar = ({ onSearch }) => {
         <Link to="/cart" className="cart-link">
           <FaShoppingCart className="cart-icon" />
           <span>Cart</span>
+          {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
         </Link>
       </div>
     </nav>

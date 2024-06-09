@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Cart from "./pages/Cart";
 import Home from "./pages/Home";
@@ -7,99 +7,93 @@ import Navbar from "./components/Navbar";
 import Signup from "./pages/Signup";
 import LoginForm from "./pages/Login";
 import ProductDetail from "./components/ProductDetail";
-import { Toaster } from "react-hot-toast"; 
-import Footer from "./components/Footer";
-import Account from "./components/Account";
-
-const products = [
-  {
-    id: 1,
-    name: "Wireless Earbuds, IPX8",
-    price: "ksh.9900.99",
-    rating: 4.5,
-    image:
-      "https://i5.walmartimages.com/seo/Wireless-Earbuds-Bluetooth-5-0-Headphones-IPX8-Waterproof-Built-in-Mic-LED-Charging-Case-21-Hours-Playtime-Hight-Fidelity-Stereo-Sound-Quality-Ear-He_a7e7bef7-f039-4d00-bfe4-15676c26ad7c.24eca05c39f5baa6894dc7c693055b49.jpeg",
-    category: "Electronics",
-  },
-  {
-    id: 2,
-    name: "AirPods Max",
-    price: "ksh.55900.99",
-    rating: 4.7,
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy2s6jM9xfBedPYTm86XEZ6ZMZL7ViC_BxmA&s",
-    category: "Electronics",
-  },
-  {
-    id: 3,
-    name: "Jordan 1 Retro Black and White",
-    price: "ksh.55900.99",
-    rating: 4.7,
-    image:
-      "https://kickskenya.com/cdn/shop/products/Jordan1BlackandWhite.jpg?v=1645521626",
-    category: "Shoes",
-  },
-  {
-    id: 4,
-    name: "ESTALON Tote Bag for Women",
-    price: "ksh.55900.99",
-    rating: 4.7,
-    image: "https://m.media-amazon.com/images/I/81P9uu4P2JL._AC_UY1000_.jpg",
-    category: "Bags",
-  },
-  {
-    id: 5,
-    name: "Cocoon sofa",
-    price: "ksh.45000.99",
-    rating: 4.7,
-    image:
-      "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRzyHzxnv83pxF2GmjB-UrbpXPYKdxUkpsztO3tTZlRGPp1aIn1Kpm_kmkinCPRYN6TWxrls89jenncUvHpE6Na74qlpkKoHXnYd2omuK50QKzN4Y69QNPXHw&usqp=CAc",
-    category: "Furniture",
-  },
-  {
-    id: 6,
-    name: "The Amber Dress",
-    price: "ksh.39000.99",
-    rating: 4.7,
-    image: "https://is4.fwrdassets.com/images/p/fw/z/HLSA-WD86_V4.jpg",
-    category: "Clothings",
-  },
-  {
-    id: 7,
-    name: "FLEUR DU MAL",
-    price: "ksh.55900.99",
-    rating: 4.7,
-    image: "https://is4.fwrdassets.com/images/p/fw/z/FLEF-WD113_V1.jpg",
-    category: "Clothings",
-  },
-  {
-    id: 8,
-    name: "Brian Tracy",
-    price: "ksh.5000.99",
-    rating: 4.7,
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRe-Zzsvw9vqwBjeW6bDg4-m6WPOFH7Dt2uPA&s",
-    category: "Books",
-  },
-];
+import { Toaster } from "react-hot-toast";
+import { api } from "./utils/Main";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
+  const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
-  const session = JSON.parse(localStorage.getItem("session"));
-  const handleAddProduct = (product) => {
-    const productExists = cartItems.find((item) => item.id === product.id);
-    if (productExists) {
-      setCartItems(
-        cartItems.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        )
-      );
-    } else {
-      setCartItems([...cartItems, { ...product, quantity: 1 }]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await api.get("/products");
+        setProducts(response.data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const fetchOrdersForUser = async (userId) => {
+    try {
+      const response = await api.get("/orders");
+      const orders = response.data;
+
+      const userOrders = orders.filter((order) => order.user_id === userId);
+
+      const newCartItems = userOrders.map((order) => ({
+        id: order.id,
+        name: order.product.product_name,
+        price: `ksh.${order.product.price}`,
+        quantity: 1,
+        image: order.product.image_url,
+        availableQuantity: order.product.quantity, 
+      }));
+
+      setCartItems(newCartItems);
+    } catch (error) {
+      console.error("Error fetching user orders:", error);
+    }
+  };
+
+  const handleAddProduct = async (product) => {
+    try {
+      const session = JSON.parse(localStorage.getItem("session"));
+      if (!session || !session.user || !session.user.id) {
+        console.error("User is not logged in");
+        return;
+      }
+
+      const userId = session.user.id;
+      const productId = product.id;
+
+      if (!productId) {
+        console.error("Product ID is undefined:", product);
+        return;
+      }
+
+      const existingCartItem = cartItems.find((item) => item.id === productId);
+
+      if (existingCartItem) {
+        if (existingCartItem.quantity >= existingCartItem.availableQuantity) {
+          console.error("Cannot add more than available quantity");
+          return;
+        }
+
+        setCartItems(
+          cartItems.map((item) =>
+            item.id === productId
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+          )
+        );
+      } else {
+        const orderData = {
+          user_id: userId,
+          product_id: productId,
+          quantity: 1,
+        };
+
+        await api.post("/orders", orderData);
+        fetchOrdersForUser(userId);
+      }
+    } catch (error) {
+      console.error("Error adding to cart:", error.response?.data || error);
     }
   };
 
@@ -129,17 +123,25 @@ function App() {
     navigate("/");
   };
 
+  const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+
   return (
     <div className="App">
-      <Toaster /> 
-      <Navbar onSearch={handleSearch} />
+      <Toaster />
+      <Navbar onSearch={handleSearch} cartCount={cartCount} />
       <Routes>
         <Route path="/registration" element={<Signup />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/account" element={<Account session={session}/>} />
         <Route
           path="/"
-          element={<Home product={products} searchTerm={searchTerm} />}
+          element={
+            <Home
+              products={products}
+              searchTerm={searchTerm}
+              onAddToCart={handleAddProduct}
+            />
+          }
         />
         <Route
           path="/cart"
@@ -149,6 +151,7 @@ function App() {
               onAddToCart={handleAddProduct}
               onRemoveFromCart={handleRemoveProduct}
               onClearCart={handleCartClearance}
+              fetchOrdersForUser={fetchOrdersForUser}
             />
           }
         />
