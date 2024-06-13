@@ -14,6 +14,7 @@ import Account from "./components/Account";
 import SideBar from "./Admin/SideBar";
 import AddProduct from "./Admin/AddProducts";
 import Client from "./Admin/Clients";
+import AboutUs from "./pages/AboutUs";
 
 const AddProductPage = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -153,6 +154,7 @@ function App() {
       <Toaster />
       <Navbar onSearch={handleSearch} cartCount={cartCount} />
       <Routes>
+        <Route path="/about" element={<AboutUs />} />
         <Route path="/admin" element={<SideBar />} />
         <Route path="/add-products" element={<AddProductPage />} />
         <Route path="/all-users" element={<Client />} />
@@ -186,7 +188,7 @@ function App() {
           element={
             <ProductDetail
               products={products}
-              setProducts={setProducts} 
+              setProducts={setProducts}
               onAddToCart={handleAddProduct}
             />
           }

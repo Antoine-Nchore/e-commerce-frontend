@@ -191,7 +191,7 @@ const ProductDetail = ({ products, onAddToCart, setProducts }) => {
               <FormLabel>Rating</FormLabel>
               <Input
                 name="rating"
-                type="text" 
+                type="text"
                 value={updatedProduct.rating}
                 onChange={handleChange}
               />
