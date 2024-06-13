@@ -56,7 +56,7 @@ function App() {
       const newCartItems = userOrders.map((order) => ({
         id: order.id,
         name: order.product.product_name,
-        price: `Ksh: ${order.product.price}`, // Adjusted to match the expected output format
+        price: `Ksh: ${order.product.price}`, 
         quantity: 1,
         image: order.product.image_url,
         availableQuantity: order.product.quantity,
@@ -111,9 +111,9 @@ function App() {
         await api.post("/orders", orderData);
         fetchOrdersForUser(userId);
 
-        // Fetch updated product list after adding
+        
         const response = await api.get("/products");
-        setProducts(response.data); // Update products state here
+        setProducts(response.data); 
       }
     } catch (error) {
       console.error("Error adding to cart:", error.response?.data || error);
@@ -186,7 +186,7 @@ function App() {
           element={
             <ProductDetail
               products={products}
-              setProducts={setProducts} // Pass setProducts to update products list
+              setProducts={setProducts} 
               onAddToCart={handleAddProduct}
             />
           }
