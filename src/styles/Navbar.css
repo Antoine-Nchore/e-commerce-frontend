@@ -183,3 +183,8 @@
 .dropdown-menu button:hover {
   background: #f5f5f5;
 }
+
+.admin{
+  background-color: orange;
+  border-radius: 10px;
+}
