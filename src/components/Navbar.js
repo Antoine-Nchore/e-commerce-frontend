@@ -37,6 +37,9 @@ const Navbar = ({ onSearch, cartCount }) => {
     alert("Logged out");
     navigate("/");
   };
+   const isAdmin = () => {
+     return user && user.role === "admin";
+   };
 
   return (
     <nav className="navbar">
@@ -52,6 +55,11 @@ const Navbar = ({ onSearch, cartCount }) => {
           <a href="#deals">Deals</a>
           <a href="#whatsnew">What's New</a>
           <a href="#delivery">Delivery</a>
+          {isAdmin() && (
+            <button className="admin">
+              <Link to="/admin">Admin</Link>
+            </button>
+          )}
         </div>
       </div>
       <div className="navbar-right">

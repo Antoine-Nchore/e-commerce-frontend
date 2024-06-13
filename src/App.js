@@ -11,8 +11,21 @@ import { Toaster } from "react-hot-toast";
 import { api } from "./utils/Main";
 import Footer from "./components/Footer";
 import Account from "./components/Account";
-import Modal from "./components/Modal";
-import AboutUs from "./pages/AboutUs";
+import SideBar from "./Admin/SideBar";
+import AddProduct from "./Admin/AddProducts";
+import Client from "./Admin/Clients";
+
+const AddProductPage = () => {
+  const [isOpen, setIsOpen] = useState(true);
+  const navigate = useNavigate();
+
+  const onClose = () => {
+    setIsOpen(false);
+    navigate("/admin");
+  };
+
+  return <AddProduct isOpen={isOpen} onClose={onClose} />;
+};
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -43,10 +56,10 @@ function App() {
       const newCartItems = userOrders.map((order) => ({
         id: order.id,
         name: order.product.product_name,
-        price: `ksh.${order.product.price}`,
+        price: `Ksh: ${order.product.price}`, // Adjusted to match the expected output format
         quantity: 1,
         image: order.product.image_url,
-        availableQuantity: order.product.quantity, 
+        availableQuantity: order.product.quantity,
       }));
 
       setCartItems(newCartItems);
@@ -97,6 +110,10 @@ function App() {
 
         await api.post("/orders", orderData);
         fetchOrdersForUser(userId);
+
+        // Fetch updated product list after adding
+        const response = await api.get("/products");
+        setProducts(response.data); // Update products state here
       }
     } catch (error) {
       console.error("Error adding to cart:", error.response?.data || error);
@@ -136,10 +153,12 @@ function App() {
       <Toaster />
       <Navbar onSearch={handleSearch} cartCount={cartCount} />
       <Routes>
-        <Route path="/about" element = {<AboutUs/>} />
+        <Route path="/admin" element={<SideBar />} />
+        <Route path="/add-products" element={<AddProductPage />} />
+        <Route path="/all-users" element={<Client />} />
         <Route path="/registration" element={<Signup />} />
         <Route path="/login" element={<LoginForm />} />
-        <Route path="/account" element={<Account session={session}/>} />
+        <Route path="/account" element={<Account session={session} />} />
         <Route
           path="/"
           element={
@@ -165,11 +184,14 @@ function App() {
         <Route
           path="/product/:id"
           element={
-            <ProductDetail products={products} onAddToCart={handleAddProduct} />
+            <ProductDetail
+              products={products}
+              setProducts={setProducts} // Pass setProducts to update products list
+              onAddToCart={handleAddProduct}
+            />
           }
         />
       </Routes>
-      <Modal onAddToCart={handleAddProduct}/>
       <Footer />
     </div>
   );
