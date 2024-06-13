@@ -11,21 +11,8 @@ import { Toaster } from "react-hot-toast";
 import { api } from "./utils/Main";
 import Footer from "./components/Footer";
 import Account from "./components/Account";
-import SideBar from "./Admin/SideBar";
-import AddProduct from "./Admin/AddProducts";
-import Client from "./Admin/Clients";
-
-const AddProductPage = () => {
-  const [isOpen, setIsOpen] = useState(true);
-  const navigate = useNavigate();
-
-  const onClose = () => {
-    setIsOpen(false);
-    navigate("/admin");
-  };
-
-  return <AddProduct isOpen={isOpen} onClose={onClose} />;
-};
+import Modal from "./components/Modal";
+import AboutUs from "./pages/AboutUs";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -153,9 +140,7 @@ function App() {
       <Toaster />
       <Navbar onSearch={handleSearch} cartCount={cartCount} />
       <Routes>
-        <Route path="/admin" element={<SideBar />} />
-        <Route path="/add-products" element={<AddProductPage />} />
-        <Route path="/all-users" element={<Client />} />
+        <Route path="/about" element = {<AboutUs/>} />
         <Route path="/registration" element={<Signup />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/account" element={<Account session={session} />} />
@@ -192,6 +177,7 @@ function App() {
           }
         />
       </Routes>
+      <Modal onAddToCart={handleAddProduct}/>
       <Footer />
     </div>
   );

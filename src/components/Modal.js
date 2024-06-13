@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Modal.css";
 
+<<<<<<< HEAD
 const Modal = ({ item, onClose }) => {
+=======
+const Modal = ({ item, onClose, handleAddProduct }) => {
+>>>>>>> main
   const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
@@ -39,6 +43,12 @@ const Modal = ({ item, onClose }) => {
             <div className="modal-image-placeholder">Loading image...</div>
           )}
         </div>
+<<<<<<< HEAD
+=======
+        <div className="modal-footer">
+          <button >Add to Cart</button>
+        </div>
+>>>>>>> main
       </div>
     </div>
   );
