@@ -1,19 +1,18 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../styles/Signup.css";
 import { api } from "../utils/Main";
-import { AuthContext } from "../components/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const navigate = useNavigate();
-  const { setIsAuthenticated, setUser } = useContext(AuthContext);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState(""); 
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -27,32 +26,17 @@ const Signup = () => {
         email,
         phone_number: phoneNumber,
         password,
+        role: role || undefined, 
       });
 
       if (response.status === 201) {
-        toast.success("Account created successfully");
-
-        // Automatically log in the user
-        const loginResponse = await api.post("/login", {
-          email,
-          password,
-        });
-
-        if (loginResponse.status === 200) {
-          const { data } = loginResponse;
-          localStorage.setItem("session", JSON.stringify(data));
-          setIsAuthenticated(true);
-
-          const userRes = await api.get(`/users/${data.user.id}`);
-          setUser(userRes.data.user);
-
-          navigate("/ ");
-        } else {
-          throw new Error("Login after signup failed");
-        }
+        toast.success(
+          "Account created successfully. Please verify your email."
+        );
+        navigate("/login"); // Navigate to login page after successful registration
       }
     } catch (error) {
-      console.error("Error during signup or login:", error);
+      console.error("Error during signup:", error);
       toast.error("Failed to create account. Please try again.");
     } finally {
       setIsLoading(false);
@@ -123,6 +107,17 @@ const Signup = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="role">Role (Optional)</label>
+            <input
+              type="text"
+              id="role"
+              name="role"
+              placeholder="Enter your role (admin/client)"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
             />
           </div>
           <div className="actions">
