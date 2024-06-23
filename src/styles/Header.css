@@ -45,6 +45,7 @@
     align-items: center; 
     padding: 10px;
     margin: 10px; 
+    position: relative; 
   }
 
   .header-content {
@@ -69,11 +70,7 @@
     box-sizing: border-box; 
     text-align: center; 
     align-self: center; 
-    position: absolute;
+    position: absolute; 
     bottom: 10px; 
-  }
-
-  .header {
-    position: relative;
   }
 }
