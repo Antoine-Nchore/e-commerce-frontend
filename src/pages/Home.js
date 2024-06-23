@@ -4,6 +4,7 @@ import FilterBar from "../components/FilterBar";
 import ProductList from "../components/ProductList";
 import Sidebar from "../components/Sidebar";
 import "../styles/App.css";
+import "../styles/ProductCard.css"; 
 
 function Home({ onAddToCart, products, searchTerm }) {
   const [filteredProducts, setFilteredProducts] = useState(products);
@@ -38,7 +39,9 @@ function Home({ onAddToCart, products, searchTerm }) {
       <div className="content">
         <Sidebar onFilterCategory={filterProductsByCategory} />
         {filteredProducts.length > 0 ? (
-          <ProductList onAddToCart={onAddToCart} products={filteredProducts} />
+          <div className="product-grid">
+            <ProductList onAddToCart={onAddToCart} products={filteredProducts} />
+          </div>
         ) : (
           <div className="no-results-message">
             <h1>Found 0 ads in Mill</h1>
