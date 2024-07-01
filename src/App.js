@@ -57,7 +57,7 @@ function App() {
       const newCartItems = userOrders.map((order) => ({
         id: order.id,
         name: order.product.product_name,
-        price: `Ksh: ${order.product.price}`, 
+        price: `Ksh: ${order.product.price}`,
         quantity: 1,
         image: order.product.image_url,
         availableQuantity: order.product.quantity,
@@ -112,34 +112,43 @@ function App() {
         await api.post("/orders", orderData);
         fetchOrdersForUser(userId);
 
-        
         const response = await api.get("/products");
-        setProducts(response.data); 
+        setProducts(response.data);
       }
     } catch (error) {
       console.error("Error adding to cart:", error.response?.data || error);
     }
   };
 
-  const handleRemoveProduct = (product) => {
-    const productExists = cartItems.find((item) => item.id === product.id);
-    if (productExists) {
-      if (productExists.quantity === 1) {
-        setCartItems(cartItems.filter((item) => item.id !== product.id));
-      } else {
-        setCartItems(
-          cartItems.map((item) =>
-            item.id === product.id
-              ? { ...item, quantity: item.quantity - 1 }
-              : item
-          )
-        );
+  const handleRemoveProduct = async (product) => {
+    try {
+      const productExists = cartItems.find((item) => item.id === product.id);
+      if (productExists) {
+        if (productExists.quantity === 1) {
+          await api.delete(`/orders/${product.id}`);
+          setCartItems(cartItems.filter((item) => item.id !== product.id));
+        } else {
+          setCartItems(
+            cartItems.map((item) =>
+              item.id === product.id
+                ? { ...item, quantity: item.quantity - 1 }
+                : item
+            )
+          );
+        }
       }
+    } catch (error) {
+      console.error("Error removing product:", error.response?.data || error);
     }
   };
 
-  const handleCartClearance = () => {
-    setCartItems([]);
+  const handleCartClearance = async () => {
+    try {
+      await api.delete("/orders");
+      setCartItems([]);
+    } catch (error) {
+      console.error("Error clearing cart:", error.response?.data || error);
+    }
   };
 
   const handleSearch = (term) => {
