@@ -1,30 +1,103 @@
-.product-card {
+.custom-product-card {
+  background-color: #fff;
   border: 1px solid #ddd;
-  padding: 10px;
-  margin: 10px;
-  width: 200px;
-  display: flex; 
-  flex-direction: column; 
+  padding: 12px;
+  border-radius: 6px;
+  position: relative;
+  transition: box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.image-container {
-  flex: 1;
+.custom-product-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.25);
 }
 
-.image-container img {
+/* Image container */
+/* .custom-image-container {
   width: 100%;
-  height: auto;
+  height: 250px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  background-color: transparent;
+} */
+
+.custom-image-container img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
 }
 
-.details-container {
+.custom-product-card:hover .custom-image-container img {
+  transform: scale(1.05);
+}
+
+/* Separator line */
+.custom-separator {
+  width: 90%;
+  height: 1px;
+  background-color: #ccc;
+  margin: 10px auto;
+}
+
+/* Details container */
+.custom-details-container {
   text-align: center;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.product-card button {
-  padding: 10px;
+.custom-product-name {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #222;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.custom-product-price {
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: #305224;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.custom-product-quantity {
+  font-size: 0.9rem;
+  color: #777;
+  margin: 0;
+}
+
+/* Stock indicator */
+.stock-indicator {
+  width: 90%;
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  margin: 5px auto 0 auto;
+  overflow: hidden;
+}
+
+.stock-indicator-fill {
+  height: 100%;
   background-color: #305224;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 10px;
+  border-radius: 4px 0 0 4px;
+  transition: width 0.3s ease;
+}
+
+/* Hover effect for text */
+.custom-product-card:hover .custom-product-name {
+  color: #305224;
 }

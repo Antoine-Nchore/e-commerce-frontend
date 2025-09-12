@@ -1,8 +1,9 @@
 .signup-container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  height: auto;
   background-color: #fff;
 }
 

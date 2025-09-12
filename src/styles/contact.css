@@ -1,0 +1,102 @@
+.contact-container {
+  max-width: 1400px;
+  margin: 40px auto;
+  display: flex;
+  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: white;
+}
+
+/* Left (image) */
+.contact-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  flex: 1;
+}
+
+.contact-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* Right (form) */
+.contact-right {
+  flex: 1;
+  background-color: white;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contact-right h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.contact-right p {
+  margin-bottom: 30px;
+  font-size: 16px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.inpu,
+textarea {
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.inpu:focus {
+  border-color: #0d9488;
+  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
+}
+
+.submit {
+  background-color: #0d9488;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit:hover {
+  background-color: #0f766e;
+}
+
+/* 📱 Responsive fix: stack image on top */
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;   /* Stack instead of side by side */
+    height: auto;             /* Let content decide height */
+  }
+
+  .contact-left {
+    padding: 20px;
+  }
+
+  .contact-right {
+    padding: 30px 20px;
+  }
+
+  .contact-right h2 {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .contact-right p {
+    text-align: center;
+  }
+}

@@ -1,55 +1,88 @@
-import React, { useState, useEffect } from "react";
-import Header from "../components/Header";
-import FilterBar from "../components/FilterBar";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Category from "../components/Category";
+import "../styles/Home.css";
 import ProductList from "../components/ProductList";
-import Sidebar from "../components/Sidebar";
-import "../styles/App.css";
 
-function Home({ onAddToCart, products, searchTerm }) {
-  const [filteredProducts, setFilteredProducts] = useState(products);
+function Home({ products }) {
+  const navigate = useNavigate();
+  const [recentlyViewed, setRecentlyViewed] = useState([]);
 
-  useEffect(() => {
-    let updatedProducts = products;
-
-    if (searchTerm) {
-      updatedProducts = products.filter((prod) =>
-        prod.product_name.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
-
-    setFilteredProducts(updatedProducts);
-  }, [products, searchTerm]);
-
-  const filterProductsByCategory = (selectedCategory) => {
-    if (selectedCategory === "all") {
-      setFilteredProducts(products);
-    } else {
-      const filtered = products.filter(
-        (prod) => prod.category === selectedCategory
-      );
-      setFilteredProducts(filtered);
-    }
+  const handleCategoryClick = (category) => {
+    navigate(`/collection/${category.toLowerCase()}`);
   };
 
+    const handleClick = () => {
+    navigate("/about");
+  };
+
+  // Load recently viewed products from localStorage
+  useEffect(() => {
+    const storedProducts = localStorage.getItem("recentlyViewed");
+    if (storedProducts) {
+      setRecentlyViewed(JSON.parse(storedProducts));
+    }
+  }, []);
+
   return (
+     <>
     <div className="App">
-      <Header />
-      <FilterBar />
-      <div className="content">
-        <Sidebar onFilterCategory={filterProductsByCategory} />
-        {filteredProducts.length > 0 ? (
-          <ProductList onAddToCart={onAddToCart} products={filteredProducts} />
-        ) : (
-          <div className="no-results-message">
-            <h1>Found 0 ads in Mill</h1>
-            <h3>
-              Unfortunately, we did not find anything that matches these
-              criteria.
-            </h3>
+ {/* Hero Section */}
+      <div className="hero">
+        <div className="hero-content">
+          <div className="hero-text">
+          <h1>Your Everyday Marketplace</h1>
+            <p>
+              Discover quality products at unbeatable prices — from fashion to tech, 
+              home essentials to lifestyle must-haves. Shop smart, save more, and 
+              enjoy a seamless shopping experience with Mill.
+            </p>
+            <button className="learn-more-btn" onClick={handleClick}>Learn More</button>
           </div>
-        )}
+          <div className="hero-visual">
+            <div className="platform-container">
+              <div className="platform platform-1">
+                <div className="product-group">
+                  <div className="product-item suitcase">🧳</div>
+                  <div className="product-item laptop">💻</div>
+                </div>
+              </div>
+              <div className="platform platform-2">
+                <div className="product-group">
+                  <div className="product-item groceries">🛒</div>
+                  <div className="product-item games">🎮</div>
+                </div>
+              </div>
+              <div className="platform platform-3">
+                <div className="product-group">
+                  <div className="product-item bags">👜</div>
+                  <div className="product-item tech">📱</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
+      {/* Categories Section */}
+      <section className="categories">
+        <h2>Shop Our Top Categories</h2>
+        <Category onSelectCategory={handleCategoryClick} />
+      </section>
+
+    
     </div>
+    
+      <div className="viewed-section">
+          {recentlyViewed && recentlyViewed.length > 0 ? (
+            <ProductList products={recentlyViewed}
+    title="Your Recent Finds"
+    seeAllRoute="/recent" />
+          ) : (
+            <p>No recently viewed products yet.</p>
+          )}
+        </div>
+     </>
   );
 }
 

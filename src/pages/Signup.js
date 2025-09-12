@@ -12,7 +12,6 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState(""); 
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -26,7 +25,6 @@ const Signup = () => {
         email,
         phone_number: phoneNumber,
         password,
-        role: role || undefined, 
       });
 
       if (response.status === 201) {
@@ -107,17 +105,6 @@ const Signup = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-            />
-          </div>
-          <div className="input-group">
-            <label htmlFor="role">Role (Optional)</label>
-            <input
-              type="text"
-              id="role"
-              name="role"
-              placeholder="Enter your role (admin/client)"
-              value={role}
-              onChange={(e) => setRole(e.target.value)}
             />
           </div>
           <div className="actions">

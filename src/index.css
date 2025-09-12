@@ -1,1 +1,105 @@
+/* Make sure body & root take full height */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 14px; /* globally reduce font size (was ~16px normally) */
+}
 
+/* Flex column layout */
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Main content takes available space */
+.main-content {
+  flex: 1;
+}
+
+/* Generic card layout */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 per row on large screens */
+  gap: 16px; /* slightly smaller gap */
+  padding: 16px; /* reduced padding */
+}
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  padding: 12px; /* smaller padding */
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card h3 {
+  font-size: 1.1rem; /* reduced size */
+  margin: 8px 0;
+}
+
+.card p {
+  font-size: 0.9rem; /* reduced size */
+  color: #555;
+}
+
+/* ===== Responsive Breakpoints ===== */
+
+/* Medium devices (tablets) */
+@media (max-width: 992px) {
+  .cards-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .card h3 {
+    font-size: 1rem;
+  }
+
+  .card p {
+    font-size: 0.85rem;
+  }
+}
+
+/* Small devices (mobile landscape) */
+@media (max-width: 768px) {
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card {
+    padding: 10px;
+  }
+
+  .card h3 {
+    font-size: 0.95rem;
+  }
+
+  .card p {
+    font-size: 0.8rem;
+  }
+}
+
+/* Extra small devices (mobile portrait) */
+@media (max-width: 480px) {
+  .cards-container {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 8px;
+  }
+
+  .card h3 {
+    font-size: 0.85rem;
+  }
+
+  .card p {
+    font-size: 0.75rem;
+  }
+}

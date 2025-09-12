@@ -1,0 +1,221 @@
+/* orders.css */
+
+.orders-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.orders-title {
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.orders-tabs {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.tab {
+  background: none;
+  border: none;
+  padding: 12px 0;
+  margin-right: 30px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.tab.active {
+  color: #ff6b35;
+  border-bottom-color: #ff6b35;
+}
+
+.tab:hover {
+  color: #ff6b35;
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.order-card {
+  display: flex;
+  align-items: flex-start;
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e8e8e8;
+}
+
+.order-image-container {
+  position: relative;
+  margin-right: 20px;
+  flex-shrink: 0;
+}
+
+.order-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #e8e8e8;
+}
+
+.brand-logo {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  background: #4CAF50;
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-transform: lowercase;
+}
+
+.product-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #9c27b0;
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.order-details {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.order-title {
+  font-size: 16px;
+  font-weight: 400;
+  color: #333;
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+}
+
+.order-number {
+  font-size: 14px;
+  color: #666;
+  margin: 0 0 4px 0;
+}
+
+.order-variation {
+  font-size: 14px;
+  color: #666;
+  margin: 0 0 8px 0;
+}
+
+.order-status-container {
+  margin: 8px 0;
+}
+
+.status-badge {
+  background: #4CAF50;
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.delivery-date {
+  font-size: 14px;
+  color: #333;
+  margin: 8px 0 0 0;
+  font-weight: 500;
+}
+
+.order-actions {
+  display: flex;
+  align-items: flex-start;
+}
+
+.see-details-btn {
+  background: none;
+  border: none;
+  color: #ff6b35;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 0;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.see-details-btn:hover {
+  color: #e55a2b;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .orders-container {
+    padding: 15px;
+  }
+  
+  .order-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .order-image-container {
+    margin: 0 auto 15px auto;
+  }
+  
+  .order-details {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+  
+  .order-actions {
+    justify-content: center;
+  }
+  
+  .tab {
+    font-size: 12px;
+    margin-right: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .orders-tabs {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .tab {
+    margin-right: 0;
+    text-align: left;
+  }
+  
+  .order-title {
+    font-size: 14px;
+  }
+}
+
+.order-id-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 20px 0 10px;
+  color: #222;
+}

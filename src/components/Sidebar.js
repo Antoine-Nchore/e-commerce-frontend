@@ -13,6 +13,7 @@ const Sidebar = ({ onFilterCategory }) => {
         <li onClick={() => onFilterCategory("Bags")}>Bags</li>
         <li onClick={() => onFilterCategory("Clothings")}>Clothings</li>
         <li onClick={() => onFilterCategory("Books")}>Books</li>
+        <li onClick={() => onFilterCategory("headphones")}>Headphones</li>
       </ul>
     </aside>
   );

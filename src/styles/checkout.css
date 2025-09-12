@@ -1,0 +1,633 @@
+/* checkout.css */
+.checkout-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.breadcrumb {
+  margin-bottom: 30px;
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.breadcrumb .current {
+  color: #000;
+  font-weight: 500;
+}
+
+.checkout-content {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.left-section {
+  flex: 2;
+}
+
+.right-section {
+  flex: 1;
+  position: sticky;
+  top: 20px;
+}
+
+/* Review Section */
+.review-section {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.review-section h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+}
+
+.product-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.product-image img {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  background: #f8f9fa;
+}
+
+.product-details {
+  flex: 1;
+}
+
+.product-details h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #1a1a1a;
+}
+
+.product-color {
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.product-price {
+  text-align: right;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+  display: block;
+}
+
+.quantity {
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.returning-customer {
+  margin-top: 16px;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Delivery Section */
+.delivery-section {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.section-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.save-info {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  flex: 1;
+}
+
+.form-group.full-width {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #1a1a1a;
+  font-size: 14px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.form-group input::placeholder {
+  color: #aaa;
+}
+
+/* Order Summary */
+.order-summary {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.order-summary h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+}
+
+.coupon-section {
+  display: flex;
+  gap: 12px;
+}
+
+.coupon-section input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.apply-coupon {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.apply-coupon:hover {
+  background: #218838;
+}
+
+/* Payment Section */
+.payment-section {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.payment-section h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+}
+
+.payment-methods {
+  margin-bottom: 20px;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.payment-option input[type="radio"] {
+  margin-right: 12px;
+  accent-color: #28a745;
+}
+
+.payment-option label {
+  font-size: 14px;
+  color: #1a1a1a;
+  cursor: pointer;
+}
+
+.payment-icons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.payment-icons img {
+  height: 24px;
+  border-radius: 4px;
+}
+
+.make-payment-btn {
+  width: 100%;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 16px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 24px;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.make-payment-btn:hover {
+  background: #0056b3;
+  transform: translateY(-1px);
+}
+
+.make-payment-btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .checkout-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .coupon-section {
+    flex-direction: column;
+  }
+  
+  .right-section {
+    position: static;
+  }
+  
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkout-container {
+    padding: 12px;
+  }
+  
+  .review-section,
+  .delivery-section,
+  .order-summary,
+  .payment-section {
+    padding: 16px;
+  }
+  
+  .product-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  
+  .product-price {
+    text-align: center;
+  }
+}
+
+/* Modal.css */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+  position: relative;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #a8edea 100%);
+  border-radius: 20px;
+  padding: 60px 40px 40px;
+  max-width: 400px;
+  width: 90%;
+  max-height: 90vh;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.4s ease-out;
+}
+
+/* Floating decorative elements */
+.floating-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.floating-dot {
+  position: absolute;
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.dot-1 {
+  width: 8px;
+  height: 8px;
+  background: #4CAF50;
+  top: 20%;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.dot-2 {
+  width: 6px;
+  height: 6px;
+  background: #2196F3;
+  top: 70%;
+  right: 20%;
+  animation-delay: -2s;
+}
+
+.dot-3 {
+  width: 4px;
+  height: 4px;
+  background: #FF9800;
+  bottom: 30%;
+  left: 20%;
+  animation-delay: -4s;
+}
+
+.floating-circle {
+  position: absolute;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  animation: rotate 8s linear infinite;
+}
+
+.circle-1 {
+  width: 30px;
+  height: 30px;
+  top: 15%;
+  right: 15%;
+  animation-delay: 0s;
+}
+
+.circle-2 {
+  width: 20px;
+  height: 20px;
+  bottom: 25%;
+  left: 10%;
+  animation-delay: -3s;
+}
+
+.floating-line {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  animation: float 7s ease-in-out infinite;
+}
+
+.line-1 {
+  width: 40px;
+  height: 2px;
+  top: 25%;
+  right: 10%;
+  transform: rotate(45deg);
+  animation-delay: -1s;
+}
+
+.line-2 {
+  width: 30px;
+  height: 2px;
+  bottom: 40%;
+  right: 25%;
+  transform: rotate(-30deg);
+  animation-delay: -5s;
+}
+
+/* Checkmark animation */
+.checkmark-container {
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 2;
+}
+
+.checkmark-circle {
+  width: 80px;
+  height: 80px;
+  background: #4CAF50;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 30px rgba(76, 175, 80, 0.4);
+  transform: scale(0);
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.checkmark-container.animate .checkmark-circle {
+  transform: scale(1);
+}
+
+.checkmark {
+  width: 40px;
+  height: 40px;
+  fill: white;
+}
+
+.checkmark-path {
+  stroke-dasharray: 20;
+  stroke-dashoffset: 20;
+  animation: none;
+}
+
+.checkmark-container.animate .checkmark-path {
+  animation: drawCheck 0.6s ease-out 0.3s forwards;
+}
+
+/* Modal text */
+.modal-text {
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.modal-text h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 12px 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  line-height: 1.3;
+}
+
+.transaction-id {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Continue button */
+.continue-button {
+  background: linear-gradient(45deg, #ff6b35, #ff8c42);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 14px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+  min-width: 180px;
+}
+
+.continue-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.5);
+}
+
+.continue-button:active {
+  transform: translateY(0);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+    opacity: 1;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes drawCheck {
+  from {
+    stroke-dashoffset: 20;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .modal-content {
+    margin: 20px;
+    padding: 50px 30px 35px;
+  }
+  
+  .modal-text h2 {
+    font-size: 20px;
+  }
+  
+  .checkmark-circle {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .checkmark {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .continue-button {
+    padding: 12px 28px;
+    font-size: 15px;
+  }
+}

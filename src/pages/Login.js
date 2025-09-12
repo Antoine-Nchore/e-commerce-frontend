@@ -28,6 +28,19 @@ const LoginForm = () => {
       const userRes = await api.get(`/users/${session.user.id}`);
       setUser(userRes.data.user);
 
+      // Merge guest cart into server
+      const localCart = JSON.parse(localStorage.getItem("cart")) || [];
+      if (localCart.length > 0) {
+        for (let item of localCart) {
+          await api.post("/orders", {
+            user_id: session.user.id,
+            product_id: item.id,
+            quantity: item.quantity,
+          });
+        }
+        localStorage.removeItem("cart"); // clear guest cart
+      }
+
       navigate("/");
     } catch (error) {
       const data = error.response?.data;
