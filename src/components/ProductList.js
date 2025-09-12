@@ -29,7 +29,10 @@ const ProductList = ({ products, title, seeAllRoute }) => {
           {seeAllRoute && products.length > 1 && (
             <button
               className="see-all-btn"
-              onClick={() => navigate(seeAllRoute)}
+                onClick={() => {
+    navigate(seeAllRoute);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }}
             >
               See All &gt;
             </button>
