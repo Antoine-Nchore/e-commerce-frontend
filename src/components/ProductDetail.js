@@ -340,7 +340,7 @@ const renderStars = (rating) => {
             <div className="promotion-item">
               <CreditCard className="promotion-icon" size={20} />
               <span className="promotion-text">
-                Easy and safer payments via the JumiaPay App.
+                Easy and safer payments.
               </span>
             </div>
             <div className="promotion-item">
