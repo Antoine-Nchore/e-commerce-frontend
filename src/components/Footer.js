@@ -79,6 +79,16 @@ const Footer = () => {
                 <Linkedin size={20} />
               </a>
             </li>
+               <li>
+              Hillary{" "}
+              <a
+                href="https://www.linkedin.com/in/korir-hillary-825926135/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Linkedin size={20} />
+              </a>
+            </li>
           </ul>
         </div>
       </div>

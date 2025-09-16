@@ -123,7 +123,7 @@ const About = () => {
                 </a>
               </div>
             </div>
-            <h3>Antony Nchore</h3>
+            <h3>Anthony Nchore</h3>
             <p className="developer-role">Software Developer | ML</p>
           </div>
 
